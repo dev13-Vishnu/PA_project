@@ -1,7 +1,10 @@
+// CORE MODULES
 const fs = require('fs');
 const http = require('http');
 const readline = require('readline');
 const url = require('url');
+
+// user defined module
 const replaceHtml = require('./modules/replaceHtml')
 
 const html = fs.readFileSync('./template/index.html','utf-8');
@@ -71,6 +74,8 @@ let productDetailtHtml = fs.readFileSync('./template/product-details.html','utf-
 //         response.end('Error 404 the page not found');
 //     }
 // });
+
+// server inherits from EventEmitter class
 const server = http.createServer();
 server.on('request', (request,response) => {
 
