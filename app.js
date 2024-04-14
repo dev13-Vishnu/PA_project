@@ -26,7 +26,55 @@ let productDetailtHtml = fs.readFileSync('./template/product-details.html','utf-
 //         return output;
 // }
 
-const server = http.createServer((request,response) => {
+// const server = http.createServer((request,response) => {
+//     let {query,pathname: path} = url.parse(request.url,true);
+    
+//     // console.log(x);
+//     // let path = request.url;
+
+//     if(path === '/' || path.toLowerCase()==='/home'){
+//         response.writeHead(200,{
+//             "Content-type":"text/html",
+//             "my-header":"hellow-world"
+//         });
+//         response.end(html.replace('{{%CONTENT%}}','You are in home page'));
+//     }else if(path.toLowerCase() === '/contact') {
+//         response.writeHead(200,{
+//             "Content-type":"text/html",
+//             "my-header":"hellow-world"
+//         });
+//         response.end(html.replace('{{%CONTENT%}}','You are in contact page'));
+//     }else if (path.toLowerCase()==='/about') {
+//         response.writeHead(200,{
+//             "Content-type":"text/html",
+//             "my-header":"hellow-world"
+//         });
+//         response.end(html.replace('{{%CONTENT%}}','you are in about page'));
+//     }else if(path.toLowerCase()==='/products') {
+//         if(!query.id) {
+//             let productHtmlArray = products.map((prod) => {
+//                 return replaceHtml(productListHtml,prod);
+//             });
+//             let productResponseHtml= html.replace('{{%CONTENT%}}',productHtmlArray.join(','));
+//         response.writeHead(200,{'Contents-type':'text/html'});
+//         response.end(productResponseHtml);
+//         }else{
+//             let prod =products[query.id];
+//             let productDetailtResponseHtml = replaceHtml(productDetailtHtml,prod) ;
+//             response.end(html.replace('{{%CONTENT%}}',productDetailtResponseHtml));
+//         }
+//     }else{
+//         response.writeHead(404,{
+//             "Content-type":"text/html",
+//             "my-header":"hellow-world"
+//         });
+//         response.end('Error 404 the page not found');
+//     }
+// });
+const server = http.createServer();
+server.on('request', (request,response) => {
+
+    
     let {query,pathname: path} = url.parse(request.url,true);
     
     // console.log(x);
@@ -70,7 +118,7 @@ const server = http.createServer((request,response) => {
         });
         response.end('Error 404 the page not found');
     }
-});
+})
 
 server.listen(3003, () =>{ 
     console.log("server is listening");
